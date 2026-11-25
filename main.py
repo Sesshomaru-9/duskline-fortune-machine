@@ -40,7 +40,11 @@ def output_dir_inside_repo(out_dir: str) -> bool:
 
 
 def write_fortune(out_dir: str) -> None:
-    """Write the fortune as a single line with no trailing newline."""
+    """Write the fortune as a single line with no trailing newline.
+
+    ``newline=""`` keeps the write byte-exact on every platform: no
+    line-ending translation, no added newline at the end of the file.
+    """
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, OUTPUT_FILENAME)
     with open(out_path, "w", encoding="utf-8", newline="") as fh:
